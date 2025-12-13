@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws & Coffee</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff7ed;
+      color: #3b2f2f;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+
+      background: transparent;
+      transition: background 0.4s ease;
+    }
+
+    header.scrolled {
+      background: rgba(255, 218, 185, 0.95);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    header.scrolled h1,
+    header.scrolled nav a {
+      color: #3b2f2f;
+    }
+
+    nav a:hover {
+      color: #d2691e;
+    }
+
+    /* ================= HERO (VIDEO) ================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 140px 20px 90px;
+      text-align: center;
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: -1;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    /* BUTTON */
+    .btn {
+      background: #d2691e;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 6px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background: #a0522d;
+      transform: translateY(-4px);
+    }
+
+    /* SECTIONS */
+    .block {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .block h2::after {
+      content: "🐾";
+      display: block;
+      font-size: 20px;
+      margin-top: 5px;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: auto;
+      overflow: auto;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    /* FORMS */
+    .order-form,
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 280px;
+      margin: auto;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+
+    /* QR */
+    .qr-box {
+      width: 200px;
+      height: 200px;
+      background: repeating-linear-gradient(
+        45deg,
+        #ddd,
+        #ddd 10px,
+        #eee 10px,
+        #eee 20px
+      );
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      font-weight: bold;
+    }
+
+    /* GALLERY */
+    .gallery .img-box {
+      height: 140px;
+      background: linear-gradient(135deg, #ffe4c4, #ffdab9);
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s;
+      overflow: auto;
+    }
+
+    .gallery .img-box:hover {
+      transform: scale(1.05);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 20px;
+      background: #ffdab9;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header id="navbar">
+    <h1>🐾 Paws & Coffee ☕</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#scan">Scan & Pay</a>
+      <a href="#pets">Pets</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="video/cafe1.mp4" type="video/mp4">
+    </video>
+
+    <h2>Welcome to Paws & Coffee</h2>
+    <p>A cozy café where pets and people meet ❤️</p>
+    <a href="#menu" class="btn">View Menu</a>
+    <a href="#order" class="btn">Online Order</a>
+    <a href="#scan" class="btn">Scan & Pay</a>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="block">
+    <h2>Our Menu</h2>
+    <div class="grid">
+      <div class="card">☕ Latte — ₹120
+        <a href="https://ibb.co/8nMXYvMp"><img src="https://i.ibb.co/qLBxJqBf/latte-2.jpg" alt="latte-2" border="0" height="500"></a>
+      </div>
+      <div class="card">☕ Cappuccino — ₹140
+       <a href="https://ibb.co/bjWz9r4N"><img src="https://i.ibb.co/PsmwH521/cappuccino.jpg" alt="cappuccino" border="0" height="500" ></a>
+      </div>
+      <div class="card">🐾 Paw Cookies — ₹80
+        <a href="https://ibb.co/TqL41XmB"><img src="https://i.ibb.co/84crb36D/cookies.jpg" alt="cookies" border="0" height="500" ></a>
+      </div>
+      <div class="card">🍫 Brownie — ₹90
+        <a href="https://ibb.co/sdbRwzDZ"><img src="https://i.ibb.co/394dNQ8n/brownies.jpg" alt="brownies" border="0" height="500"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PETS -->
+  <section id="pets" class="block">
+    <h2>Meet Our Pets</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🐱 Whisky</h3>
+        <video controls autoplay muted width="100%">
+          <source src="video/kitten.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="card">
+        <h3>🐶 Bruno</h3>
+        <video controls autoplay muted width="100%">
+          <source src="video/puppy.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="images/footer cafe.jpeg" width="100%">
+    © 2025 Paws & Coffee 🐾
+  </footer>
+
+  <!-- NAVBAR SCROLL SCRIPT -->
+  <script>
+    window.addEventListener("scroll", () => {
+      document.getElementById("navbar")
+        .classList.toggle("scrolled", window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>
